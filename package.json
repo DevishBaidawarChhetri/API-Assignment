@@ -1,0 +1,26 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "description": "Second day of API class",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run lint && nodemon index.js",
+    "lint": "./node_modules/.bin/eslint *.js",
+    "test": "TEst"
+  },
+  "keywords": [
+    "app"
+  ],
+  "author": "Devish Baidawar Chhetri",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^6.6.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
