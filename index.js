@@ -1,26 +1,26 @@
-var express = require('express');
+const { callBack, middleware } = require('./controllers/apiController');
+const express = require('express');
+const app = express();
+const PORT = 3090;
 
-var app = express();
+// register view engine
+app.set('view engine', 'ejs');
 
-// Request, Response
-function callBack(req, res){
-    console.log('In registration');
-    res.status(200);
-    var x = {name: "Softwarica", location: "Dillibazaar"};
-    res.json(x);
-    // res.send('test');
-}
-app.get('/registration',  callBack);
-app.get('/booking',
-    function(req, res, next){
-        console.log('In first middleware do something');
-        next();
-    },
-    function(req, res, next){
-        console.log('In second middleware // send something');
-        res.status(200);
-        next();
-    },
+// middleware & static files
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
-);
-app.listen(3090);
+// Request
+app.get('/', (req, res) => res.redirect('home'));
+
+app.get('/home', (req, res) => {
+  res.render('home', { title: 'Softwarica College of IT & E-commerce' });
+});
+
+app.get('/api/about', callBack);
+middleware(app);
+
+app.use((req, res) => res.redirect('home'));
+
+// Listener
+app.listen(PORT, () => `Listening to port: ${PORT}`);

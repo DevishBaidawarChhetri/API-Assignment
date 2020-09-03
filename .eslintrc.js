@@ -15,9 +15,9 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
-    "semi": ["error", "always"],
-    "quotes": ["error", "double"],
-    "no-console": "warn",
-    "camelcase": "warn"
+    semi: ['error', 'always'],
+    quotes: ['error', 'single'],
+    'no-console': 'warn',
+    camelcase: 'warn',
   },
 };

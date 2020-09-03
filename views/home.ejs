@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- head -->
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <!-- nav -->
+    <%- include('./partials/nav.ejs') %>
+    <!-- main -->
+    <%- include('./partials/main.ejs') %>
+    <!-- javascript -->
+    <script>
+      const title = document.querySelector('#title');
+      const about = document.querySelector('#about');
+      const loc = document.querySelector('#loc');
+      const email = document.querySelector('#email');
+      const phone = document.querySelector('#phone');
+      const programme = document.querySelector('.programme');
+      const api = '/api/about';
+      fetch(api)
+        .then((res) => res.json())
+        .then((data) => {
+          const programmes_offered = data.programmes_offered;
+          title.textContent = data.name;
+          about.textContent = data.about;
+          loc.textContent = data.contact.location;
+          email.textContent = data.contact.email;
+          phone.textContent = data.contact.phone_no;
+          programme.innerHTML = `
+            <li>${programmes_offered[0]}</li>
+            <li>${programmes_offered[1]}</li>
+          `;
+        })
+        .catch((err) => console.log(err));
+    </script>
+  </body>
+</html>
